@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  	<head>
+    	<meta charset="UTF-8">
+       	<script src="https://unpkg.com/react@15/dist/react.js"></script>
+       	<script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+       	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script>
+       	
+  	</head>
+
+  	<body>
+  		<div id="root"></div>
+  		<script type="text/babel">
+
+  		function AppTitle(props) {
+  			return (
+  				<h1>{props.text}</h1>
+  			)
+  		}	
+
+  		function AppSubtitle(props) {
+  			return (
+  				<h3>{props.text}</h3>
+  			)
+  		}
+
+  		function AppHeader(props) {
+  			return (
+  				<div>
+	  				<AppTitle text={props.title}/>
+	  				<AppSubtitle text={props.subtitle}/>
+  				</div>
+  			)
+  		}
+
+  		function OptionsTitle(props) {
+  			return (
+  				<h2>{props.text}</h2>
+  			)
+  		}
+
+  		function OptionsNew(props) {
+  			if(props.selected) {
+  				return (
+	  				<div>
+		  				<label>{props.label}</label>
+		  				<input type="checkbox" defaultChecked="true"/>
+		  			</div>
+	  			)
+			}
+			else {
+				return (
+	  				<div>
+		  				<label>{props.label}</label>
+		  				<input type="checkbox"/>
+		  			</div>
+	  			)
+			}
+  		}
+
+  		function OptionType(props) {
+  			return (
+  				<div>
+  					<label>{props.label}</label>
+  					<select>
+  						{
+  							props.options.map(function(item, i){
+        						return <option value={item} key={i}>{item}</option>;
+    						})
+    					}
+  					</select>
+  				</div>
+  			)
+  		}
+
+  		function Vehicle(props) {
+  			return (
+  				<div>
+	  				<h2>{props.title}</h2>
+		  			<table>
+		  				<thead>
+		  					<tr>
+							    <th>Year</th>
+							    <th>Model</th> 
+							    <th>Price</th>
+							    <th>Buy</th>
+							 </tr>
+		  				</thead>
+		  				<tbody>
+			  				{
+								props.list.map((item, i) => (
+										<tr key = {i}>
+										<td>{item.year}</td>
+										<td>{item.model}</td>
+										<td>{item.price}</td>
+										<td><button>Buy Now</button></td>
+										</tr>
+									)
+								)
+							}
+						</tbody>
+					</table>
+				</div>
+			)
+  		}
+
+
+  		function OptionsList(props) {
+  			return (
+  				<div>
+	  				<Vehicle title = {props.carTitle} list = {props.cars}/>
+	  				<Vehicle title = {props.truckTitle} list = {props.trucks}/>
+	  				<Vehicle title = {props.convertibleTitle} list = {props.convertibles}/>
+  				</div>
+  			)
+  		}
+
+  		var carList = [
+  			{year: "2013", model: "A", price: "32000"},
+  			{year: "2011", model: "B", price: "4400"},
+  			{year: "2016", model: "B", price: "15500"}
+  		]
+
+  		var truckList = [
+  			{year: "2014", model: "D", price: "18000"},
+  			{year: "2013", model: "E", price: "5200"}  		]
+
+  		var convertibleList = [
+  			{year: "2009", model: "F", price: "2000"},
+  			{year: "2010", model: "G", price: "6000"},
+  			{year: "2012", model: "H", price: "12500"},
+  			{year: "2017", model: "H", price: "50000"}
+  		]
+
+  		function OptionSection(props) {
+  			return (
+  				<div>
+	  				<OptionsTitle text = {props.optionTitle}/>
+	  				<OptionsNew label = {props.newLabel} selected={props.new}/>
+	  				<br/>
+	  				<OptionType label = {props.typeLabel} options = {props.options}/>
+	  				<OptionsList cars = {props.cars}
+	  							trucks = {props.trucks}
+	  							convertibles = {props.convertibles}
+	  							carTitle = "Cars"
+	  							truckTitle = "Trucks"
+	  							convertibleTitle = "Convertibles"/>
+	  			</div>
+  			)
+  		}
+
+		    function App(props){
+
+		        return (
+		            <div>
+		                <AppHeader title = "Welcome to React Transportation" 
+		                	subtitle = "The best place to buy vehicles online"/>
+		                <OptionSection 
+		                	optionTitle = "Choose Options"
+		                	newLabel = "New Only"
+		                	new = {true}
+		                	typeLabel = "Select Type "
+		                	options = {[ "All","Cars","Trucks","Convertibles"]}
+		                	cars = {carList}
+  							trucks = {truckList}
+  							convertibles = {convertibleList}/>
+		            </div>
+		        )
+		    }
+
+		    ReactDOM.render(
+		        <App/>,
+		        document.getElementById("root")
+		    )
+
+      	</script>
+  	</body>
+</html>
+
