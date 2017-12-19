@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  	<head>
+    	<meta charset="UTF-8">
+       	<script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+       	<script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+       	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script>
+  	</head>
+
+  	<body>
+  		<div id="root"></div>
+  		<script type="text/babel">
+
+  			var tiger = {
+  				name: "White Tiger",
+  				imgUrl: "https://www.planwallpaper.com/static/images/desktop-year-of-the-tiger-images-wallpaper.jpg"
+  			}
+
+  			var imgElement = <img src = {tiger.imgUrl} height="200px"></img>
+
+
+	        ReactDOM.render(
+	            imgElement,
+	            document.getElementById("root")
+	        )
+
+      	</script>
+  	</body>
+</html>
+
